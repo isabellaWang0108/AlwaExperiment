@@ -11,22 +11,46 @@
     <title>Alwa Life Coach</title>
 
     <style>
+        body {
 
+            background-image: url('https://coachtrainingworld.com/wp-content/uploads/2015/10/start_life_coaching_business.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .white {
+            background-color:white;
+            width:100%;
+            position:absolute;
+            left:0;
+            padding-top:48px;
+            padding-bottom: 48px;
+            margin-bottom: 48px;
+            top:250px;
+        }
     </style>
 </head>
 
 <body>
     <div class='container mx-auto'>
-        <h1 class="p1title mx-auto" style="width: 400px;">What is life coach</h1>
-        <div class="row">
-            <h3 class="p1descript">
-                Welcome to Alwa. We are marketplace that connects you with an accredited life coach. 
-                Coaching is about helping people you identify the obstacles that keep getting in your way, assisting you with finding motivation, and pinpointing any resistance to change. 
-                We have a variety of coaches that can help across a range of professional and personal issues.
-            </h3>
-        </div>
+        <div class="white">
+            <h1 class="p1title mx-auto" style="width: 400px;">What is life coach</h1>
+            <div class="row">
+                <h5 class="p1descript mx-auto" style="max-width:800px;padding-left:36px;padding-right:24px;">
+                    Welcome to Alwa. We are marketplace that connects you with an accredited life coach.
+                    Coaching is about helping people you identify the obstacles that keep getting in your way, assisting
+                    you
+                    with finding motivation, and pinpointing any resistance to change.
+                    We have a variety of coaches that can help across a range of professional and personal issues.
+                </h5>
+            </div>
+            <div class="row">
+                <button id='readClick' type="button" class="btn  mx-auto btn-primary"
+                    style="width: 50%;min-width:300px;margin-top:24px;">Continue</button>
 
-        <button id='readClick' type="button" class="btn btn-primary">Continue</button>
+            </div>
+
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -55,6 +79,8 @@
                 clickFor: "finish reading",
             });
             window.location.href = './catagory.html'
+
+
         });
         firebase.database().ref().push({
             clickFor: "open up",

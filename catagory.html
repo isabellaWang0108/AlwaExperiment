@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Alwa Life Coach</title>
+
+    <style>
+        .card {
+            width: 100%;
+            min-width: 250px;
+            margin-top: 24px;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: #add8e6;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <!-- <div id='selectingCatagories'>
+
+            <h2>Choose your catagory</h2>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card" id="career">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card" id="finance">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card" id="personal">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card" id="relationship">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <button id='selectCatagory' type="button" class="btn btn-primary mx-auto"
+                    style="width: 400px;margin-top:24px;margin-bottom: 200px;">continue</button>
+
+            </div>
+        </div> -->
+        <div id='lifeCoaches'>
+            <h2>Choose your catagory</h2>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card" id="career">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+
+        <!-- Specific Firebase products we want -->
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+        <!-- <script type='text/javascript' src='./keys.js'></script> -->
+        <script>
+
+            var selection = [];
+            var firebaseConfig = {
+                apiKey: "AIzaSyCxK46W-TvzyKukttdpQ6f5i72QLpO4cxk",
+                authDomain: "experiment-click.firebaseapp.com",
+                databaseURL: "https://experiment-click.firebaseio.com",
+                projectId: "experiment-click",
+                storageBucket: "experiment-click.appspot.com",
+                messagingSenderId: "664598001470",
+                appId: "1:664598001470:web:70860613aad6addce81e6f",
+                measurementId: "G-0VJSC61DGZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            $("#career").click(function (e) {
+                if ($("#career").hasClass('selected')) {
+                    $("#career").removeClass('selected')
+                    selection.splice(selection.indexOf('career'), 1);
+                } else {
+                    $("#career").addClass('selected')
+                    selection.push('career')
+                }
+
+            });
+            $("#finance").click(function (e) {
+                if ($("#finance").hasClass('selected')) {
+                    $("#finance").removeClass('selected')
+                    selection.splice(selection.indexOf('finance'), 1);
+                } else {
+                    $("#finance").addClass('selected')
+                    selection.push('finance')
+                }
+
+            });
+            $("#personal").click(function (e) {
+                if ($("#personal").hasClass('selected')) {
+                    $("#personal").removeClass('selected')
+
+                    selection.splice(selection.indexOf('personal'), 1);
+                } else {
+                    $("#personal").addClass('selected')
+                    selection.push('personal')
+                }
+
+            });
+            $("#relationship").click(function (e) {
+                if ($("#relationship").hasClass('selected')) {
+                    $("#relationship").removeClass('selected')
+                    selection.splice(selection.indexOf(relationship), 1);
+                } else {
+                    $("#relationship").addClass('selected')
+                    selection.push('relationship')
+
+                }
+
+            });
+            $("button").click(function () {
+                console.log(selection)
+                // firebase.database().ref().push({
+                //     catagory: 'selection',
+                //     element: selction,
+                // });
+
+                $("#selectingCatagories").remove()
+
+            });
+        </script>
+</body>
+
+</html>

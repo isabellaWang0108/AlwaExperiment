@@ -37,8 +37,9 @@
             margin-top: -70px;
             height: 180px;
         }
-        #lifeCoaches{
-            display:none;
+
+        #lifeCoaches {
+            display: none;
         }
     </style>
 </head>
@@ -120,8 +121,245 @@
         <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
         <!-- <script type='text/javascript' src='./keys.js'></script> -->
         <script>
+            data = [
+                {
+                    "name": "Edward Nguyen",
+                    "img_url": "https://images.pexels.com/photos/937481/pexels-photo-937481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+                    "type": "Financial",
+                    "description": "Certified life coach with more than 8 years of of senior corporate experience. Ideal coach for career or business clients. Schedule your free 30-minute intro Zoom consultation. Work at weekends for busy execs."
+                },
+                {
+                    "name": "Georgie Cuevas",
+                    "img_url": "https://images.pexels.com/photos/1138903/pexels-photo-1138903.jpeg?cs=srgb&dl=selective-focus-photograph-of-man-wearing-gray-suit-jacket-1138903.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "I have over 10 years of coaching experience, specialising in finance and financial management. Email me with what you are looking for and I will respond. We can then follow this up with a phone consultation if there is a match."
+                },
+                {
+                    "name": "Isabella Villegas",
+                    "img_url": "https://images.pexels.com/photos/3681609/pexels-photo-3681609.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+                    "type": "Financial",
+                    "description": "I am a personal and professional coach helping people mindfully manage finance in their transition and growth life paces. I take an integrative approach towards coaching,..."
+                },
+                {
+                    "name": "Michelle Rossi",
+                    "img_url": "https://images.pexels.com/photos/2658952/pexels-photo-2658952.jpeg?cs=srgb&dl=women-s-black-and-white-striped-blouse-2658952.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "I am a certified life coach in the financial space. I have experience in working with executives in managing their financial resources and portfolios"
+                },
+                {
+                    "name": "Astrid Mcdowell",
+                    "img_url": "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?cs=srgb&dl=woman-wearing-gray-notch-lapel-suit-jacket-2381069.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "Passionate in client success with an eclectic approach, fast, effective & practical advice. Consistent, pragmatic, strategic and professional manner is how clients describe me."
+                },
+                {
+                    "name": "Baxter Hendricks",
+                    "img_url": "https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?cs=srgb&dl=business-businessman-contemporary-corporate-532220.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "Do you feel lost, stuck or unhappy in your financials? Are you experiencing financial difficulties? Underpaid? Under-valued? Stuck in the wrong job? As an Accredited Coach, I work with ambitious professionals to help you manage your financials."
+                },
+                {
+                    "name": "Konrad Beach",
+                    "img_url": "https://images.pexels.com/photos/325685/pexels-photo-325685.jpeg?cs=srgb&dl=full-length-portrait-of-man-standing-in-corridor-325685.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "I have over 10 years of coaching experience, specialising in managing financial portfolios and personal investment.Email me with what you are looking for and I will respond. We can then follow this up with a phone consultation if there is a match."
+                },
+                {
+                    "name": "Ed Carey",
+                    "img_url": "https://images.pexels.com/photos/32976/pexels-photo.jpg?cs=srgb&dl=press-conference-interview-man-person-32976.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "I am a personal and professional coach helping people define their financial goals and manage financial development during the career journey."
+                },
+                {
+                    "name": "Dina Castaneda",
+                    "img_url": "https://images.pexels.com/photos/937483/pexels-photo-937483.jpeg?cs=srgb&dl=woman-posing-937483.jpg&fm=jpg",
+                    "type": "Financial",
+                    "description": "Experienced life coach with personal financial decision making with executives in big corporations or startups. My approach is more detailed and goal oriented."
+                },
+                {
+                    "name": "Kieran Robins",
+                    "img_url": "https://www.pexels.com/photo/men-s-wearing-black-suit-jacket-and-pants-937481/",
+                    "type": "Career",
+                    "description": "As a certified life coach, my mission is to provide coaching and career advancement products and services to individuals – middle school to college age, veterans, aspiring/current managers – and to organizations using a proven coaching model."
+                },
+                {
+                    "name": "Logan Rowley",
+                    "img_url": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?cs=srgb&dl=man-wearing-white-dress-shirt-and-black-blazer-2182970.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "Years of experience in the HR management consultancy. Assists people in knowing they deserve and are worthy of having everything in life they want. Being happy before and after they receive that dream life sometimes is the challenge."
+                },
+                {
+                    "name": "Melissa Faulkner",
+                    "img_url": "https://images.pexels.com/photos/2602085/pexels-photo-2602085.jpeg?cs=srgb&dl=shallow-focus-photo-of-woman-sitting-on-couch-2602085.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "Certified life coach with more than 10 years of working with C-suite levels. As a coach, she utilizes her years of proven experience to partner with her clients helping them to connect inner passion and purpose to outer goals and strategies to obtain powerful and sustainable results. Through the coaching process clients have been able to create greater fulfillment so they can live extraordinary lives and have amazing careers."
+                },
+                {
+                    "name": "Raphael Dunn",
+                    "img_url": "https://images.unsplash.com/photo-1559718062-361155fad299?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    "type": "Career",
+                    "description": "I am a leader that does not mind working behind the scenes because my fulfillment is in providing acts of kindness, positivity, and love towards others."
+                },
+                {
+                    "name": "Daisy Acosta",
+                    "img_url": "https://images.pexels.com/photos/1024403/pexels-photo-1024403.jpeg?cs=srgb&dl=photography-of-a-woman-using-laptop-1024403.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "Her approach relies on the practical application of her behavioral change skills and personal wisdom from years of exploring meditation and stress release as it relates to living in a paradoxical world."
+                },
+                {
+                    "name": "Ralphie Hendricks",
+                    "img_url": "https://images.unsplash.com/photo-1568493021943-4077b55c95a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+                    "type": "Career",
+                    "description": "Certified life coach with more than 8 years of experience in the talent search industry.  Helps entrepreneurs and individuals who are struggling with lack of focus for their life path, who are questioning their life purpose and need some direction and guidance."
+                },
+                {
+                    "name": "Henry Howard",
+                    "img_url": "https://images.pexels.com/photos/3206078/pexels-photo-3206078.jpeg?cs=srgb&dl=man-leaning-on-beige-post-3206078.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "His technique of coaching, encouragement, and strategic planning provides clients with the tools to move from a mediocre outlook of success to a magnificent vision of opportunities and achievement."
+                },
+                {
+                    "name": "Moesha Mayer",
+                    "img_url": "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?cs=srgb&dl=woman-wearing-white-polo-long-sleeved-shirt-1181695.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "I develop and assist younger and less experienced employees on essential skills needed to be successful. I coach and mentor stressed out and frustrated professional women who are tired of being unable to get a raise and constantly being passed up for promotion"
+                },
+                {
+                    "name": "Henry Robbins",
+                    "img_url": "https://images.pexels.com/photos/90333/pexels-photo-90333.jpeg?cs=srgb&dl=businessman-man-desk-working-90333.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "He uses evidence-based strategies to assist individuals and organizations to assess their unique strengths and to move from their comfort zones into their opportunity zones."
+                },
+                {
+                    "name": "Rupert Banks",
+                    "img_url": "https://images.pexels.com/photos/50855/pexels-photo-50855.jpeg?cs=srgb&dl=person-man-confident-business-50855.jpg&fm=jpg",
+                    "type": "Career",
+                    "description": "Certified life coach with more than 8 years of experience in the talent acquisition industry. He enjoys motivating and encouraging others to tap into their greatness and live their best life."
+                },
+                {
+                    "name": "Anaiya Gilmorez",
+                    "img_url": "https://images.unsplash.com/photo-1581065178047-8ee15951ede6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80",
+                    "type": "Personal improvement",
+                    "description": "Over 10 years experience in professional coaching. With a unique person centred approach, based around you and your needs. Life coaching, confidence coaching and leadership coaching expert."
+                },
+                {
+                    "name": "Katrina Flores",
+                    "img_url": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+                    "type": "Personal improvement",
+                    "description": "I coach those who feel stuck & are looking to increase their confidence, gain clarity & make changes in their career or personal life. My coaching is practical & provides the tools you need to make decisions & move forward. Over 3 years of experience."
+                },
+                {
+                    "name": "Tabatha Davis",
+                    "img_url": "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?cs=srgb&dl=smiling-woman-wearing-black-sweater-1587009.jpg&fm=jpg",
+                    "type": "Personal improvement",
+                    "description": "Life and wellbeing coach for LGBTQ women. Helping professional and entrepreneurial LGBTQ women struggling with self-acceptance or living their full potential. Discover the clarity and confidence to create a life you love."
+                },
+                {
+                    "name": "Lex Horn",
+                    "img_url": "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
+                    "type": "Personal improvement",
+                    "description": "Learn how to be yourself with more skill by understanding your own unique human operating system. An expert in self-awareness, I provide high impact coaching and consulting that gets to the heart of who you are."
+                },
+                {
+                    "name": "Ayyub Ray",
+                    "img_url": "https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+                    "type": "Personal improvement",
+                    "description": "I help my clients to bridge the gap between where they are now and where they want to be. I'm here to help you discover your potential, realise your goals, and to help get you to where you want to be faster than if you were to do it alone."
+                },
+                {
+                    "name": "Sarah-Louise Glenn",
+                    "img_url": "https://images.pexels.com/photos/864994/pexels-photo-864994.jpeg?cs=srgb&dl=woman-wearing-white-top-holding-smartphone-and-tablet-864994.jpg&fm=jpg",
+                    "type": "Personal improvement",
+                    "description": "Certified life coach with more than 10 years in the corporate leadership development. Feeling overwhelmed? ? Want to make changes but don't know where to start? ? Struggling to prioritise all the ideas and things you want to achieve? I can help you sort through the noise, get clarity on your true priorities and overcome obstacles."
+                },
+                {
+                    "name": "Naomi Ingram",
+                    "img_url": "https://images.pexels.com/photos/3727508/pexels-photo-3727508.jpeg?cs=srgb&dl=woman-in-white-dress-shirt-wearing-eyeglasses-3727508.jpg&fm=jpg",
+                    "type": "Personal improvement",
+                    "description": "Holistic coach working with people who are ready to drive positive change. Do you feel disconnected and lost? Work with me to connect to your purpose. From mapping out your current life, through to identifying goals and driving sustainable change."
+                },
+                {
+                    "name": "Keon Flynn",
+                    "img_url": "https://images.unsplash.com/flagged/photo-1567194974473-c866a1ba88d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    "type": "Personal improvement",
+                    "description": "I support you in connecting to your inner resources and find new perspectives in life. I combine coaching and creative psychotherapy techniques to help you find areas of personal development and shape the future you want."
+                },
+                {
+                    "name": "Zain Beaumont",
+                    "img_url": "https://images.pexels.com/photos/3205590/pexels-photo-3205590.jpeg?cs=srgb&dl=man-in-black-sweater-holding-marker-pen-3205590.jpg&fm=jpg",
+                    "type": "Personal improvement",
+                    "description": "Peak performance is not being great at your job... That’s a given. Working harder and longer not the answer. My job is to optimise you! By enhancing your strengths and ditch what’s in your way. I master coaching techniques to ensure your success."
+                },
+                {
+                    "name": "Deon Strong",
+                    "img_url": "https://images.unsplash.com/photo-1559548331-f9cb98001426?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+                    "type": "Personal improvement",
+                    "description": "Find authenticity and confidence through awareness, exploration, and challenging your limits. I help people overcome common challenges, including eliminating limiting beliefs, reducing stress, achieving creative recovery, and moving through change."
+                },
+                {
+                    "name": "Rock Blevins",
+                    "img_url": "https://images.unsplash.com/photo-1581455527083-9d62f3f5ae01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+                    "type": "Family and Relationship",
+                    "description": "I am a Transformational Life Coach and help stressed out High Functioning Business leaders remove stress so they can fully enjoy a successful professional and personal life."
+                },
+                {
+                    "name": "Klenn Everett",
+                    "img_url": "https://images.unsplash.com/flagged/photo-1573603867003-89f5fd7a7576?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=685&q=80",
+                    "type": "Family and Relationship",
+                    "description": "I have over 10 years of coaching experience, specialising in Confidence, Career and Intuitive Coaching. Email me with what you are looking for and I will respond. We can then follow this up with a phone consultation if there is a match."
+                },
+                {
+                    "name": "Jamie-Leigh Bain",
+                    "img_url": "https://images.pexels.com/photos/2955376/pexels-photo-2955376.jpeg?cs=srgb&dl=man-wearing-black-suit-2955376.jpg&fm=jpg",
+                    "type": "Family and Relationship",
+                    "description": "Passionate in client success with an eclectic approach, fast, effective and practical. Consistent, pragmatic & caring manner is how clients describe me."
+                },
+                {
+                    "name": "Kevin Lee",
+                    "img_url": "https://images.pexels.com/photos/450214/pexels-photo-450214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+                    "type": "Family and Relationship",
+                    "description": "Grow your success and satisfaction in your working life with an experienced, committed and Masters qualified coach. Do you want to break through what's currently stopping you from progressing?"
+                },
+                {
+                    "name": "Zeynep Hughes",
+                    "img_url": "https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?cs=srgb&dl=selective-focus-photo-of-man-using-laptop-1438081.jpg&fm=jpg",
+                    "type": "Family and Relationship",
+                    "description": "My clients have worked hard to create fulfilling lives but what once worked for them no longer does. I use my skills as a coach and my 15 years corporate experience to help them take a step back and create a better way to live at home and at work"
+                },
+                {
+                    "name": "Victor Graham",
+                    "img_url": "https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    "type": "Family and Relationship",
+                    "description": "I help you to become who you need to be today, so that you can become the person you want to be tomorrow, rise above the pressures and struggles of your hectic days and design a life overflowing with success and fulfilment."
+                },
+                {
+                    "name": "Luciana Pace",
+                    "img_url": "https://images.unsplash.com/photo-1573878222998-40b24a653ac8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    "type": "Family and Relationship",
+                    "description": "I will help you understand where you are and what you want. Together we'll look at areas of your life where you are not living as fully as you would like. Helping you find ways of accessing both your strength and sensitivity in the workplace & at home."
+                },
+                {
+                    "name": "Klay Haworth",
+                    "img_url": "https://images.pexels.com/photos/3526923/pexels-photo-3526923.jpeg?cs=srgb&dl=man-in-gray-suit-3526923.jpg&fm=jpg",
+                    "type": "Family and Relationship",
+                    "description": "Difficult choices and life decisions are part of our life journey and personal growth. The ability to manage one’s life involves having clarity..."
+                },
+                {
+                    "name": "Umaima Goddard",
+                    "img_url": "https://images.unsplash.com/photo-1573878591960-37c788c55728?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    "type": "Family and Relationship",
+                    "description": "I help clients move from a place of loss and disconnect through to a life of discovery and self-love. Self-love is key to showing up in the world."
+                },
+                {
+                    "name": "Michaela Garner",
+                    "img_url": "https://images.unsplash.com/photo-1581464907815-29bdb6343d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    "type": "Family and Relationship",
+                    "description": "What if I told you that you have access to all of the answers that you need to take you to the next step. If you have been feeling \"stuck\" and realise that things need to change now, I help my clients to design and live the life that they love."
+                }
+            ]
 
             var selection = [];
+            var lifeCoach = [];
             var firebaseConfig = {
                 apiKey: "AIzaSyCxK46W-TvzyKukttdpQ6f5i72QLpO4cxk",
                 authDomain: "experiment-click.firebaseapp.com",
@@ -178,29 +416,33 @@
             });
             $("button").click(function () {
                 console.log(selection)
-                // firebase.database().ref().push({
-                //     category: 'selection',
-                //     element: selction,
-                // });
+                firebase.database().ref().push({
+                    category: 'selection',
+                    clickNo: 'three',
+                    element: selection,
+                });
                 $("#selectingCatagories").remove()
-                $("#lifeCoaches").css('display','block')
+                $("#lifeCoaches").css('display', 'block')
 
             });
-            for (var i = 0; i < 10; i++) {
-                $("#lifeCoaches").append('<div class="row">\
+            
+              data.map( (item,index)=> {
+                  $("#lifeCoaches").append('<div class="row">\
                 <div class="col-sm">\
                     <div class="card">\
-                        <img src="..." class="profileImg" alt="...">\
+                        <img src="'+item.img_url+'" class="profileImg" alt="...">\
                         <div class="profileText">\
-                            <h5>Name</h5>\
-                            <p>Some quick example text to build on the card title and make up the bulk</p>\
-                            <button id="selectcategory" type="button" class="btn btn-primary mx-auto" style="width: 200px;margin-top:24px;margin-bottom: 200px;">Schedule a meeting</button>\
+                            <h5>'+item.name+'</h5>\
+                            <p>'+item.description+'</p>\
+                            <button id="selectcategory" type="button" class="btn btn-primary mx-auto" style="width: 200px;margin-top:24px;">Schedule a meeting</button>\
                         </div>\
                     </div>\
                 </div>\
             </div>'
                 )
             }
+                )
+
         </script>
 </body>
 

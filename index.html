@@ -52,14 +52,12 @@
         $("button").click(function () {
             console.log('the first button');
             firebase.database().ref().push({
-                clickNo: "two",
-                element: "page1",
+                clickFor: "finish reading",
             });
             window.location.href = './catagory.html'
         });
         firebase.database().ref().push({
-            clickNo: "one",
-            element: "page1",
+            clickFor: "open up",
         });
     </script>
 </body>

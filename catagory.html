@@ -58,8 +58,9 @@
                         <div class="card-body">
                             <h5 class="card-title">Career Coaching</h5>
                             <p class="card-text">
-                                Whether you’re a confused fresh graduate who doesn’t know what to do with your degree or 
-                                a tenured professional who’s experiencing a career crisis, career life coaches are the professionals you need.
+                                Whether you’re a confused fresh graduate who doesn’t know what to do with your degree or
+                                a tenured professional who’s experiencing a career crisis, career life coaches are the
+                                professionals you need.
                             </p>
                         </div>
                     </div>
@@ -69,8 +70,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Financial Coaching</h5>
                             <p class="card-text">
-                                Many people dream of living a debt-free future where they live in a beautiful home with their loved ones. 
-                                To help obtain this, financial life coaches are professionals who provide clients with viable financial solutions.
+                                Many people dream of living a debt-free future where they live in a beautiful home with
+                                their loved ones.
+                                To help obtain this, financial life coaches are professionals who provide clients with
+                                viable financial solutions.
                             </p>
                         </div>
                     </div>
@@ -82,7 +85,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Personal Development</h5>
                             <p class="card-text">
-                                Personal development coaching focuses on increasing your self-awareness, 
+                                Personal development coaching focuses on increasing your self-awareness,
                                 looking at life goals, personal challenges and long-standing aspirations.
                             </p>
                         </div>
@@ -93,8 +96,9 @@
                         <div class="card-body">
                             <h5 class="card-title">Relationship and Family Coaching</h5>
                             <p class="card-text">
-                                This type of life coach can help facilitate conversation between couples and family members who are having communication issues.
-                                 It can also help individuals find actionable ways to solve their current problems.
+                                This type of life coach can help facilitate conversation between couples and family
+                                members who are having communication issues.
+                                It can also help individuals find actionable ways to solve their current problems.
                             </p>
                         </div>
                     </div>
@@ -414,34 +418,43 @@
                 }
 
             });
-            $("button").click(function () {
+            $("#selectcategory").click(function () {
                 console.log(selection)
                 firebase.database().ref().push({
-                    category: 'selection',
-                    clickNo: 'three',
+                    clickFor: 'Selecting type',
                     element: selection,
                 });
                 $("#selectingCatagories").remove()
                 $("#lifeCoaches").css('display', 'block')
 
             });
-            
-              data.map( (item,index)=> {
-                  $("#lifeCoaches").append('<div class="row">\
+
+            data.map((item, index) => {
+                $("#lifeCoaches").append('<div class="row">\
                 <div class="col-sm">\
                     <div class="card">\
-                        <img src="'+item.img_url+'" class="profileImg" alt="...">\
+                        <img src="'+ item.img_url + '" class="profileImg" alt="...">\
                         <div class="profileText">\
-                            <h5>'+item.name+'</h5>\
-                            <p>'+item.description+'</p>\
-                            <button id="selectcategory" type="button" class="btn btn-primary mx-auto" style="width: 200px;margin-top:24px;">Schedule a meeting</button>\
+                            <h5>'+ item.name + '</h5>\
+                            <p>'+ item.description + '</p>\
+                            <button  name="'+ item.name + '" type="button" class="coachOption btn btn-primary mx-auto" style="width: 200px;margin-top:24px;">Schedule a meeting</button>\
                         </div>\
                     </div>\
                 </div>\
             </div>'
                 )
             }
-                )
+            )
+
+
+
+            $('button').click(function (e) {
+                console.log()
+                firebase.database().ref().push({
+                    clickFor: 'Selecting coach',
+                    personSelected: e.target.name,
+                });
+            });
 
         </script>
 </body>

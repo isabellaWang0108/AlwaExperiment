@@ -31,18 +31,16 @@
         }
 
         .profileImg {
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 200px;
             overflow: hidden;
             object-fit: cover;
-            border-radius: 50%;
-            margin-top: 12px;
-            margin-left: 12px;
+            border-radius: 12px;
         }
 
         .profileText {
             margin-left: 120px;
-            margin-top: -70px;
+            margin-top: -190px;
             height: 180px;
         }
 
@@ -50,17 +48,55 @@
             display: none;
         }
 
-        .card-body, .card {
+        .card-body,
+        .card {
             border-radius: 12px;
         }
-        .card-body{
-          background-color: #dcfff2;
+
+        .card-body {
+            background-color: #dcfff2;
         }
-        .card{
+
+        .card {
             border-width: 2px;
         }
+
+        .popUp {
+            width: 80%;
+            position: fixed;
+            left: auto;
+            right: auto;
+            background-color: gainsboro;
+            height: 300px;
+            margin-top: 150px;
+            z-index: 5;
+            text-align: center;
+            padding-top: 40px;
+            font-size: 24px;
+            border-radius: 12px;
+            align-items: center;
+        }
+
         p {
             font-size: 12px
+        }
+
+        .algorithm {
+            width: 40%;
+            margin-left: 5%;
+            margin-top: 24px;
+            border-radius: 12px;
+        }
+
+        .barrier {
+            background-color: black;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            opacity: .7;
         }
     </style>
 </head>
@@ -70,6 +106,17 @@
 
 
     <div class="container">
+        <div class="barrier">
+        </div>
+        <div class='popUp'>
+            <h2>Match service</h2>
+            <h8>Do you want to provide us information to help you match with your perfect coach in the future?</h8>
+            <div class="row">
+                <button name="yes" style="background-color:lightgreen " class="algorithm">Yes, please</button>
+                <button name="no" style="background-color:lightcoral" class="algorithm">No, thanks</button>
+            </div>
+        </div>
+
         <div id='selectingCatagories'>
 
             <h2>Choose your category</h2>
@@ -77,7 +124,7 @@
                 coaches.</p6>
             <div class="row">
                 <div class="col-sm">
-                    <div class="card" id="career" >
+                    <div class="card" id="career">
                         <div class="card-body">
                             <h5 class="card-title">Career Coaching</h5>
                             <p class="card-text">
@@ -204,12 +251,7 @@
                     "type": "finance",
                     "description": "Experienced life coach with personal finance decision making with executives in big corporations or startups. My approach is more detailed and goal oriented."
                 },
-                {
-                    "name": "Kieran Robins",
-                    "img_url": "https://www.pexels.com/photo/men-s-wearing-black-suit-jacket-and-pants-937481/",
-                    "type": "career",
-                    "description": "As a certified life coach, my mission is to provide coaching and career advancement products and services to individuals – middle school to college age, veterans, aspiring/current managers – and to organizations using a proven coaching model."
-                },
+
                 {
                     "name": "Logan Rowley",
                     "img_url": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?cs=srgb&dl=man-wearing-white-dress-shirt-and-black-blazer-2182970.jpg&fm=jpg",
@@ -220,7 +262,7 @@
                     "name": "Melissa Faulkner",
                     "img_url": "https://images.pexels.com/photos/2602085/pexels-photo-2602085.jpeg?cs=srgb&dl=shallow-focus-photo-of-woman-sitting-on-couch-2602085.jpg&fm=jpg",
                     "type": "career",
-                    "description": "Certified life coach with more than 10 years of working with C-suite levels. As a coach, she utilizes her years of proven experience to partner with her clients helping them to connect inner passion and purpose to outer goals and strategies to obtain powerful and sustainable results. Through the coaching process clients have been able to create greater fulfillment so they can live extraordinary lives and have amazing careers."
+                    "description": "Certified life coach with more than 10 years of working with C-suite levels. As a coach, she utilizes her years of proven experience to partner with her clients helping them to connect inner passion and purpose to outer goals and strategies to obtain powerful and sustainable results. "
                 },
                 {
                     "name": "Raphael Dunn",
@@ -443,35 +485,51 @@
                 }
 
             });
+            $(".algorithm").click(function(e){
+                firebase.database().ref().push({
+                    clickFor: 'algorithm',
+                    element: e.target.name,
+                });
+            })
             $("#selectcategory").click(function () {
                 console.log(selection)
                 data_filtered = data.filter(coach => selection.includes(coach.type));
-                
-                data_filtered.map( (item,index)=> {
-                  $("#lifeCoaches").append('<div class="row">\
+
+                data_filtered.map((item, index) => {
+                    $("#lifeCoaches").append('<div class="row">\
                 <div class="col-sm">\
                     <div class="card">\
+                        <div class="card-body">\
                         <img src="'+ item.img_url + '" class="profileImg" alt="...">\
                         <div class="profileText">\
                             <h5>'+ item.name + '</h5>\
                             <p>'+ item.description + '</p>\
-                            <button  name="'+ item.name + '" type="button" class="coachOption btn btn-primary mx-auto" style="width: 200px;margin-top:24px;">Schedule a meeting</button>\
+                            <button  name="'+ item.name + '" type="button" class="coachOption btn btn-primary mx-auto" style="width: 200px;">Schedule a meeting</button>\
+                        </div>\
                         </div>\
                     </div>\
                 </div>\
             </div>'
-                )
-            }
+                    )
+                }
                 )
                 firebase.database().ref().push({
-                    category: 'selection',
-                    clickNo: 'three',
+                    clickFor: 'selection',
                     element: selection,
                 });
                 $("#selectingCatagories").remove()
                 $("#lifeCoaches").css('display', 'block')
 
-            });
+                $("button").click(function (e) {
+                    console.log(e)
+                    firebase.database().ref().push({
+                        clickFor: 'coach themsleve',
+                        theCoach: e.target.name
+                    })
+                });
+
+            })
+
 
         </script>
 </body>

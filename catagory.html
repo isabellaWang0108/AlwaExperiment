@@ -522,12 +522,11 @@
                 $("#lifeCoaches").css('display', 'block')
 
                 $(".coachOption").click(function (e) {
-                    if (e.target.name !== 'yes' || e.target.name !== 'no') {
                         firebase.database().ref().push({
                             clickFor: 'coach themsleve',
                             theCoach: e.target.name
                         })
-                    }
+                        window.location.href = 'https://forms.gle/PyU1ZHDScGJ3xM9Z6l'
 
                 });
 
